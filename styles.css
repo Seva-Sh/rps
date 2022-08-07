@@ -1,10 +1,5 @@
 html {
     background-color: #66a3ff;
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    width: auto;  */
 }
 
 body {
@@ -16,7 +11,7 @@ body {
     align-items: center;
     width: 100%;
     height: 100%;
-    gap: 80px;
+    gap: 70px;
 }
 
 #scores {
@@ -34,13 +29,11 @@ body {
 }
 
 #Rock, #Paper, #Scissors {
-    /* border: 2px solid black; */
     height: 150px;
     width: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: .4rem solid black; */
     border-radius: .5rem;
     font-size: 1.5rem;
     padding: 1rem .5rem;
@@ -82,6 +75,8 @@ body {
 
 h1 {
     font-family: 'Tillana', cursive;
+    font-size: 3rem;
+    margin-bottom: 0;
 }
 
 #scores, #computerSelection {
@@ -92,4 +87,9 @@ h1 {
 #displayWinner {
     font-family: 'Petit Formal Script', cursive;
     font-size: 2.5rem;
+}
+
+#links {
+    display: flex;
+    gap: 30px;
 }

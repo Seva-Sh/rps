@@ -1,4 +1,5 @@
-const buttons = document.querySelectorAll('button');
+const buttons = Array.from(document.querySelector('#choices').children);
+const playAgainButton = document.querySelector('#playAgain');
 const plScore = document.querySelector('#plScore');
 const comScore = document.querySelector('#comScore');
 const disWinner = document.querySelector('#displayWinner');
@@ -39,8 +40,10 @@ function displayWinner (playerScore, computerScore, result) {
     if (playerScore >= 5 || computerScore >= 5) {
         if (playerScore > computerScore) {
             disWinner.textContent = "You win the game!";
+            disWinner.style.color = 'green';
         } else if (computerScore > playerScore) {
             disWinner.textContent = "Computer wins this game!";
+            disWinner.style.color = 'red';
         } else {
             disWinner.textContent = "Friendship wins!";
         }
@@ -49,7 +52,7 @@ function displayWinner (playerScore, computerScore, result) {
     } 
 }
 
-function playGame(playerSelection) {
+function mainGame(playerSelection) {
     
     const computerSelection =  getComputerChoice();
     
@@ -80,14 +83,26 @@ function removeTransition(e) {
     this.classList.remove('playing');
 }
 
-displayScore(playerScore, computerScore);
 
-buttons.forEach((button) => {
-    button.addEventListener('click', () => {
+function runGame() {
+    displayScore(playerScore, computerScore);
 
-        playSound(button);
-        button.addEventListener('transitionend', removeTransition)
-        playGame(button.id);
-
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            playSound(button);
+            button.addEventListener('transitionend', removeTransition)
+            mainGame(button.id);
+            if (playerScore >= 5 || computerScore >= 5) {
+                buttons.forEach((button) => {
+                    button.disabled = true;
+                })
+            }
+        });
     });
-});
+
+    playAgainButton.addEventListener('click', () => {
+        document.location.reload();
+    })
+}
+
+runGame();
